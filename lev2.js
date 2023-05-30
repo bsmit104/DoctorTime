@@ -51,7 +51,7 @@ class Level2 extends Phaser.Scene {
         //     rectangle.body.setAllowGravity(false);
         // });
 
-        this.flagob = this.physics.add.image(230, 350, 'flag');
+        this.flagob = this.physics.add.image(1600, 4690, 'flag');
         this.flagob.body.allowGravity = false;
         this.flagob.setDepth(1);
         this.flagob.setScale(4);
@@ -104,6 +104,7 @@ class Level2 extends Phaser.Scene {
         var objectLayer = map.getObjectLayer('objs');
         var start = objectLayer.objects.find(obj => obj.name === 'start');
         player.setPosition(start.x * 4, start.y * 4);
+        //console.log(player);
 
         var win = objectLayer.objects.find(obj => obj.name === 'finish');
         // Create a new Phaser 3 Rectangle object using the found object's properties
@@ -154,13 +155,13 @@ class Level2 extends Phaser.Scene {
 
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
-        // this.physics.add.collider(player, this.flagob, nextsce, null, this);
-        //     // Collision callback function
-        //     function nextsce() {
-        //         // Trigger the scene change here
-        //         // For example:
-        //         this.scene.start('cut3');
-        //     }
+        this.physics.add.collider(player, this.flagob, nextsce, null, this);
+            // Collision callback function
+            function nextsce() {
+                // Trigger the scene change here
+                // For example:
+                this.scene.start('level3');
+            }
         // this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
         //     // Collision callback function
         //     function redo() {

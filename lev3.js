@@ -52,7 +52,7 @@ class Level3 extends Phaser.Scene {
         //     rectangle.body.setAllowGravity(false);
         // });
 
-        this.flagob = this.physics.add.image(230, 350, 'flag');
+        this.flagob = this.physics.add.image(950, 850, 'flag');
         this.flagob.body.allowGravity = false;
         this.flagob.setDepth(1);
         this.flagob.setScale(4);
@@ -161,7 +161,7 @@ class Level3 extends Phaser.Scene {
         function nextsce() {
             // Trigger the scene change here
             // For example:
-            this.scene.start('level2');
+            this.scene.start('Title');
         }
         // this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
         //     // Collision callback function

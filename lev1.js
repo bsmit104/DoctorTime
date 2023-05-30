@@ -160,13 +160,13 @@ class Level1 extends Phaser.Scene {
 
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
-        // this.physics.add.collider(player, this.flagob, nextsce, null, this);
-        //     // Collision callback function
-        //     function nextsce() {
-        //         // Trigger the scene change here
-        //         // For example:
-        //         this.scene.start('cut3');
-        //     }
+        this.physics.add.collider(player, this.flagob, nextsce, null, this);
+            // Collision callback function
+            function nextsce() {
+                // Trigger the scene change here
+                // For example:
+                this.scene.start('level2');
+            }
         // this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
         //     // Collision callback function
         //     function redo() {
