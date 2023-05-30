@@ -357,9 +357,9 @@ class Beg extends Phaser.Scene {
         // this.add.text(150, 250, "and Connor Green").setFontSize(30);
         // this.add.text(250, 300, "present").setFontSize(20);
         this.input.on('pointerdown', () => this.scene.start('title'));
-        this.cameras.main.fadeIn(10000);
+        this.cameras.main.fadeIn(5000);
         this.time.addEvent({
-            delay: 10000, 
+            delay: 8000, 
             loop:false,
             callback: () => {
                 this.scene.start("title")
