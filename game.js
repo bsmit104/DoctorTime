@@ -31,8 +31,6 @@ var previousScene;
 
 var config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
     pixelArt: true,
     //roundPixels: true,
     zoom: 1,
