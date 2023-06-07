@@ -15,7 +15,7 @@ class Title extends Phaser.Scene {
         this.title = this.add.image(centerX, centerY - 100, 'title');
         this.title.setScale(3);
 
-        const playText = this.add.text(centerX - 150, centerY + 300, 'PLAY', { fontSize: '80px', fill: '#fff' });
+        const playText = this.add.text(centerX + 250, centerY + 300, 'PLAY', { fontSize: '80px', fill: '#fff' });
         //playText.setDepth(1);
         playText.setInteractive();
         playText.on('pointerover', () => {
@@ -34,6 +34,19 @@ class Title extends Phaser.Scene {
             yoyo: true,
             ease: 'Sine.inOut',
             duration: 100
+        });
+
+        const credText = this.add.text(centerX - 400, centerY + 300, 'CREDITS', { fontSize: '80px', fill: '#fff' });
+        //playText.setDepth(1);
+        credText.setInteractive();
+        credText.on('pointerover', () => {
+            credText.setStyle({ fill: '#ff0' });
+        });
+        credText.on('pointerout', () => {
+            credText.setStyle({ fill: '#fff' });
+        });
+        credText.on('pointerdown', () => {
+            this.scene.start('cred');
         });
         // const space = this.add.image(200, 0, 'space');
         // //space.scale(.5);
