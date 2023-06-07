@@ -13,6 +13,19 @@ class Level1 extends Phaser.Scene {
         this.load.image('player', 'dashstill.png');
         this.load.image('flag', 'portal.png');
         this.load.image('pause', 'pause.png');
+        this.load.spritesheet('docrun', 'docrun.png', {
+            frameWidth: 32,
+            frameHeight: 32,
+        });
+        this.load.spritesheet('idle', 'doc.png', {
+            frameWidth: 12,
+            frameHeight: 32,
+        });
+        this.load.spritesheet('docjump', 'docjump.png', {
+            frameWidth: 32,
+            frameHeight: 32,
+        });
+        this.load.image('scrape', "wallscrape.png");
     }
 
     create() {
@@ -85,6 +98,25 @@ class Level1 extends Phaser.Scene {
 
         // create the player sprite    
         player = this.physics.add.sprite(200 * 4, 200 * 4, 'player');
+        player.anims.create({
+            key: 'idle',
+            frames: this.anims.generateFrameNumbers('idle', { start: 0, end: 1 }),
+            frameRate: 7,
+            repeat: -1
+        });
+        player.anims.create({
+            key: 'docrun',
+            frames: this.anims.generateFrameNumbers('docrun', { start: 0, end: 9 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        player.anims.create({
+            key: 'docjump',
+            frames: this.anims.generateFrameNumbers('docjump', { start: 0, end: 4 }),
+            frameRate: 5,
+            repeat: 0
+        });
+        //player.anims.play('idle', true);
         player.setBounce(0.2); // our player will bounce from items
         player.setScale(4);
         player.setDepth(2);
@@ -122,9 +154,6 @@ class Level1 extends Phaser.Scene {
         // player will collide with the level tiles 
         this.physics.add.collider(groundLayer, player);
 
-        var spikeob = objectLayer.objects.find(obj => obj.name === 'spike');
-        this.physics.add.overlap(player, spikeob, this.handleSpikeCollision, null, this);
-
         // // player walk animation
         // this.anims.create({
         //     key: 'walk',
@@ -161,12 +190,12 @@ class Level1 extends Phaser.Scene {
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
-            // Collision callback function
-            function nextsce() {
-                // Trigger the scene change here
-                // For example:
-                this.scene.start('level2');
-            }
+        // Collision callback function
+        function nextsce() {
+            // Trigger the scene change here
+            // For example:
+            this.scene.start('map2');
+        }
         // this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
         //     // Collision callback function
         //     function redo() {
@@ -181,7 +210,9 @@ class Level1 extends Phaser.Scene {
 
         if (cursors.left.isDown) {
             player.body.setVelocityX(-500);
-            //player.anims.play('walk', true); // walk left
+            player.setSize(25, player.height - 8);
+            player.setOffset(16, 0);
+            player.anims.play('docrun', true); // walk left
             player.flipX = true; // flip the sprite to the left
         }
         else if (cursors.down.isDown) {
@@ -194,15 +225,41 @@ class Level1 extends Phaser.Scene {
         }
         else if (cursors.right.isDown) {
             player.body.setVelocityX(500);
-            //player.anims.play('walk', true);
+            player.setSize(25, player.height - 8);
+            player.setOffset(0, 0); // Reset the offset to 0
+            player.anims.play('docrun', true);
             player.flipX = false; // use the original sprite looking to the right
-        } else {
+        }
+        else {
             player.body.setVelocityX(0);
-            //player.anims.play('idle', true);
+            player.setSize(12, player.height - 8);
+            player.setOffset((player.width - 12) / 2, 0);
+            player.anims.play('idle', true);
         }
         // jump 
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-500);
+            player.anims.play('docjump', true);
+            // player.on('animationcomplete-docjump', () => {
+            //     player.anims.play('docrun', true);
+            // });
+        }
+
+        // Wall jump logic
+        if (player.body.blocked.left || player.body.blocked.right) {
+            // Check if the player is pressing the jump key
+            if (cursors.up.isDown) {
+                // Apply an upward velocity to initiate the wall jump
+                player.setVelocityY(-300);
+
+                // You can add additional logic or animations here
+
+                // Prevent continuous wall jumping by disabling further jumps temporarily
+                player.body.blocked.up = true;
+            } else {
+                // Reset the ability to wall jump if the player is not pressing the jump key
+                player.body.blocked.up = false;
+            }
         }
     }
 }

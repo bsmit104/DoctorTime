@@ -25,7 +25,7 @@ class Title extends Phaser.Scene {
             playText.setStyle({ fill: '#fff' });
         });
         playText.on('pointerdown', () => {
-            this.scene.start('map');
+            this.scene.start('map1');
         });
         this.tweens.add({
             targets: this.title,

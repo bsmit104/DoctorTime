@@ -47,10 +47,10 @@ var config = {
                 x: 0,
                 y: 0
             },
-            debug: false
+            debug: true
         }
     },
-    scene: [Beg, Title, Map, Pause, Settings, Level1, Level2, Level3]
+    scene: [Logoscene, Title, Cred, Map1, Map2, Map, Pause, Settings, Level1, Level2, Level3]
     //{
     // key: 'main',
     // preload: preload,
