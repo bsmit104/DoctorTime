@@ -53,22 +53,20 @@ class Level1 extends Phaser.Scene {
         this.cameras.main.scrollX = 0; // Set the initial scroll position to 0
         this.cameras.main.scrollY = 0;
         this.cameras.main.setScroll(this.pause.width, 0);
-        // this.rectangleGroup = this.physics.add.group([
-        //     this.add.rectangle(100, 800, 4000, 100, 0xFF0000)
-        //         .setDepth(1)
-        //         .setVisible(false),
-
-        //     this.add.rectangle(225, 660, 60, 60, 0xFF0000)
-        //         .setDepth(1)
-        //         .setVisible(false),
-
-        //     this.add.rectangle(480, 530, 60, 60, 0xFF0000)
-        //         .setDepth(1)
-        //         .setVisible(false),
-        // ]);
-        // this.rectangleGroup.getChildren().forEach(rectangle => {
-        //     rectangle.body.setAllowGravity(false);
-        // });
+        this.rectangleGroup = this.physics.add.group([
+            this.add.rectangle(2150, 4660, 3450, 50, 0xFF0000)
+                .setDepth(1)
+                .setVisible(false),
+            this.add.rectangle(2550, 1480, 2900, 50, 0xFF0000)
+                .setDepth(1)
+                .setVisible(false),
+            this.add.rectangle(850, 2380, 500, 50, 0xFF0000)
+                .setDepth(1)
+                .setVisible(false),
+        ]);
+        this.rectangleGroup.getChildren().forEach(rectangle => {
+            rectangle.body.setAllowGravity(false);
+        });
 
         this.flagob = this.physics.add.image(230, 350, 'flag');
         this.flagob.body.allowGravity = false;
@@ -196,13 +194,13 @@ class Level1 extends Phaser.Scene {
             // For example:
             this.scene.start('map2');
         }
-        // this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
-        //     // Collision callback function
-        //     function redo() {
-        //         // Trigger the scene change here
-        //         // For example:
-        //         this.scene.start('level1');
-        //     }
+        this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
+        // Collision callback function
+        function redo() {
+            // Trigger the scene change here
+            // For example:
+            this.scene.start('level1');
+        }
 
         // if (Phaser.Geom.Rectangle.ContainsPoint(this.winrect, { x: player.width, y: player.height })) {
         //     //this.scene.start('cut3');
@@ -211,7 +209,7 @@ class Level1 extends Phaser.Scene {
         if (cursors.left.isDown) {
             player.body.setVelocityX(-500);
             player.setSize(25, player.height - 8);
-            player.setOffset(16, 0);
+            player.setOffset(16, 4);
             player.anims.play('docrun', true); // walk left
             player.flipX = true; // flip the sprite to the left
         }
@@ -226,14 +224,14 @@ class Level1 extends Phaser.Scene {
         else if (cursors.right.isDown) {
             player.body.setVelocityX(500);
             player.setSize(25, player.height - 8);
-            player.setOffset(0, 0); // Reset the offset to 0
+            player.setOffset(0, 4); // Reset the offset to 0
             player.anims.play('docrun', true);
             player.flipX = false; // use the original sprite looking to the right
         }
         else {
             player.body.setVelocityX(0);
             player.setSize(12, player.height - 8);
-            player.setOffset((player.width - 12) / 2, 0);
+            player.setOffset((player.width - 12) / 2, 4);
             player.anims.play('idle', true);
         }
         // jump 
