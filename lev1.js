@@ -19,6 +19,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('dust1', 'dust1.png');
         this.load.image('dust2', 'dust2.png');
         this.load.audio("ouch", "collision.mp3");
+        this.load.image('star', 'Star.png');
         this.load.audio("levmusic", "DoctorTimeLev.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
@@ -92,7 +93,7 @@ class Level1 extends Phaser.Scene {
         this.flagob.setScale(4);
         this.flagob.setImmovable(true);
 
-        this.physics.world.gravity.y = 500;
+        this.physics.world.gravity.y = 2000;
         // load the map 
         map = this.make.tilemap({ key: 'lab1' });
 
@@ -133,7 +134,7 @@ class Level1 extends Phaser.Scene {
             repeat: 0
         });
         //player.anims.play('idle', true);
-        player.setBounce(0.2); // our player will bounce from items
+        player.setBounce(0.3); // our player will bounce from items
         player.setScale(4);
         player.setDepth(2);
         player.setCollideWorldBounds(true); // don't go out of the map   
@@ -250,23 +251,6 @@ class Level1 extends Phaser.Scene {
         // set background color, so the sky is not black    
         this.cameras.main.setBackgroundColor('#ccccff');
 
-        let ghost = this.add.sprite(player.x, player.y, player.texture.key).setAlpha(0.5);
-        ghost.setScale(player.displayWidth/ghost.displayWidth)
-        this.time.addEvent({
-            delay: 1,
-            callback: () => {
-                let x = player.x;
-                let y = player.y;
-                let texture = player.texture.key;
-                this.time.delayedCall(500, () => {
-                    ghost.x = x;
-                    ghost.y = y;
-                    ghost.setTexture(texture);
-                })
-            },
-            loop: true
-        })
-
     }
 
     update(time, delta) {
@@ -349,11 +333,17 @@ class Level1 extends Phaser.Scene {
         }
         // jump 
         if (cursors.up.isDown && player.body.onFloor()) {
-            player.body.setVelocityY(-500);
+            player.body.setVelocityY(-900);
             player.anims.play('docjump', true);
             // player.on('animationcomplete-docjump', () => {
             //     player.anims.play('docrun', true);
             // });
+            this.add.particles(player.x, player.y, 'star', {
+                speed: 100,
+                lifespan: 3000,
+                duration: 300,
+                gravityY: 200
+            });
         }
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
@@ -365,7 +355,7 @@ class Level1 extends Phaser.Scene {
             // Check if the player is pressing the jump key
             if (cursors.up.isDown) {
                 // Apply an upward velocity to initiate the wall jump
-                player.setVelocityY(-300);
+                player.setVelocityY(-500);
 
                 // You can add additional logic or animations here
 
@@ -374,7 +364,7 @@ class Level1 extends Phaser.Scene {
             }
             else if (jumping) {
                 // Apply an upward velocity to initiate the wall jump
-                player.setVelocityY(-300);
+                player.setVelocityY(-500);
 
                 // You can add additional logic or animations here
 

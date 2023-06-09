@@ -16,6 +16,7 @@ class Level3 extends Phaser.Scene {
         this.load.image('leftk', 'lkey.png');
         this.load.image('rightk', 'rkey.png');
         this.load.image('jumpk', 'jkey.png');
+        this.load.image('star', 'Star.png');
         this.load.audio("ouch", "collision.mp3");
         this.load.audio("levmusic", "DoctorTimeLev.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
@@ -91,7 +92,7 @@ class Level3 extends Phaser.Scene {
         this.flagob.setScale(4);
         this.flagob.setImmovable(true);
 
-        this.physics.world.gravity.y = 500;
+        this.physics.world.gravity.y = 2000;
         // load the map 
         map = this.make.tilemap({ key: 'lab3' });
 
@@ -312,7 +313,14 @@ class Level3 extends Phaser.Scene {
         }
         // jump 
         if (cursors.up.isDown && player.body.onFloor()) {
-            player.body.setVelocityY(-500);
+            player.body.setVelocityY(-900);
+            player.anims.play('docjump', true);
+            this.add.particles(player.x, player.y, 'star', {
+                speed: 100,
+                lifespan: 3000,
+                duration: 300,
+                gravityY: 200
+            });
         }
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
