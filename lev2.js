@@ -25,6 +25,7 @@ class Level2 extends Phaser.Scene {
         this.load.audio("ouch", "collision.mp3");
         this.load.audio("roboto", "robot1.mp3");
         this.load.audio("levmusic", "DoctorTimeLev.mp3");
+        this.load.audio("jump", "jump_final.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -397,7 +398,9 @@ class Level2 extends Phaser.Scene {
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-600);
             player.anims.play('docjump', true);
-
+            this.jump = this.sound.add('jump');
+            this.jump.play();
+            this.jump.loop = false;
             //PROCEDURAL GRAPHICS SECTION
             this.add.particles(player.x, player.y, 'star', {
                 speed: 100,
@@ -409,6 +412,9 @@ class Level2 extends Phaser.Scene {
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
             player.anims.play('docjump', true);
+            this.jump = this.sound.add('jump');
+            this.jump.play();
+            this.jump.loop = false;
             this.add.particles(player.x, player.y, 'star', {
                 speed: 100,
                 lifespan: 3000,

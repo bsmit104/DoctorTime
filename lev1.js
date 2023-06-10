@@ -22,6 +22,7 @@ class Level1 extends Phaser.Scene {
         this.load.audio("roboto", "robot1.mp3");
         this.load.image('star', 'Star.png');
         this.load.audio("levmusic", "DoctorTimeLev.mp3");
+        this.load.audio("jump", "jump_final.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -409,6 +410,9 @@ class Level1 extends Phaser.Scene {
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-600);
             player.anims.play('docjump', true);
+            this.jump = this.sound.add('jump');
+            this.jump.play();
+            this.jump.loop = false;
             // player.on('animationcomplete-docjump', () => {
             //     player.anims.play('docrun', true);
             // });
@@ -424,6 +428,9 @@ class Level1 extends Phaser.Scene {
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
             player.anims.play('docjump', true);
+            this.jump = this.sound.add('jump');
+            this.jump.play();
+            this.jump.loop = false;
             this.add.particles(player.x, player.y, 'star', {
                 speed: 100,
                 lifespan: 3000,
