@@ -46,7 +46,9 @@ class Level1 extends Phaser.Scene {
             this.levm = this.sound.add('levmusic');
             this.levm.play();
             this.levm.loop = true;
-        }
+        } //start level music
+
+        //add ouch and robot sound effects
         this.ouch = this.sound.add('ouch');
         this.roboto = this.sound.add('roboto');
 
@@ -208,6 +210,7 @@ class Level1 extends Phaser.Scene {
         // make the camera follow the player
         this.cameras.main.startFollow(player);
 
+        //mobile buttons
         this.lkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'leftk')
         this.lkey.setDepth(1)
             .setInteractive()
@@ -300,7 +303,9 @@ class Level1 extends Phaser.Scene {
         //     this.dustEmitter1.stop();
         //     this.dustEmitter2.start();
         // }
-        
+
+
+        //PROCEDURAL AUDIO SECTION
         let random_sfx = Math.floor(Math.random() * 5000);
         let random_duration = Math.floor(Math.random()*70);
 
@@ -355,6 +360,8 @@ class Level1 extends Phaser.Scene {
             // player.on('animationcomplete-docjump', () => {
             //     player.anims.play('docrun', true);
             // });
+            
+            //PROCEDURAL GRAPHICS SECTION
             this.add.particles(player.x, player.y, 'star', {
                 speed: 100,
                 lifespan: 3000,

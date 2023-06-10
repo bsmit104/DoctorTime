@@ -18,6 +18,7 @@ class Level3 extends Phaser.Scene {
         this.load.image('jumpk', 'jkey.png');
         this.load.image('star', 'Star.png');
         this.load.audio("ouch", "collision.mp3");
+        this.load.audio("roboto", "robot1.mp3");
         this.load.audio("levmusic", "DoctorTimeLev.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
@@ -40,7 +41,9 @@ class Level3 extends Phaser.Scene {
             this.levm.loop = true;
         }
 
+        //sound effects
         this.ouch = this.sound.add('ouch');
+        this.roboto = this.sound.add('roboto');
 
         previousScene = this.scene.key;
 
@@ -183,7 +186,7 @@ class Level3 extends Phaser.Scene {
 
         cursors = this.input.keyboard.createCursorKeys();
 
-
+        //add mobile buttons
         this.lkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'leftk')
         this.lkey.setDepth(1)
             .setInteractive()
@@ -277,6 +280,20 @@ class Level3 extends Phaser.Scene {
         //     player.body.allowGravity = true;
         // }
 
+
+        //PROCEDURAL AUDIO SECTION
+        let random_sfx = Math.floor(Math.random() * 5000);
+        let random_duration = Math.floor(Math.random()*70);
+
+        if(random_sfx >= 4998){
+            console.log(random_sfx)
+            console.log(random_duration)
+            this.roboto.duration = random_duration;
+            this.roboto.loop = false;
+            if(this.roboto.isPlaying == false){
+                this.roboto.play()
+            }
+        }
         
         if (isleft) {
             player.body.setVelocityX(-500);
@@ -315,6 +332,8 @@ class Level3 extends Phaser.Scene {
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-600);
             player.anims.play('docjump', true);
+
+            //PROCEDURAL GRAPHICS SECTION
             this.add.particles(player.x, player.y, 'star', {
                 speed: 100,
                 lifespan: 3000,
