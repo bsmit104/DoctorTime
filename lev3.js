@@ -16,6 +16,8 @@ class Level3 extends Phaser.Scene {
         this.load.image('leftk', 'lkey.png');
         this.load.image('rightk', 'rkey.png');
         this.load.image('jumpk', 'jkey.png');
+        this.load.audio("ouch", "collision.mp3");
+        this.load.audio("levmusic", "DoctorTimeLev.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -27,6 +29,18 @@ class Level3 extends Phaser.Scene {
     }
 
     create() {
+        if (musicoff) {
+            this.sound.stopAll();
+        }
+        else {
+            this.sound.stopAll();
+            this.levm = this.sound.add('levmusic');
+            this.levm.play();
+            this.levm.loop = true;
+        }
+
+        this.ouch = this.sound.add('ouch');
+
         previousScene = this.scene.key;
 
         const camera = this.cameras.main;
@@ -247,6 +261,8 @@ class Level3 extends Phaser.Scene {
         function redo() {
             // Trigger the scene change here
             // For example:
+            this.ouch.play();
+            this.ouch.loop = false;
             this.scene.start('level3');
         }
 

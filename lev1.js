@@ -18,6 +18,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('jumpk', 'jkey.png');
         this.load.image('dust1', 'dust1.png');
         this.load.image('dust2', 'dust2.png');
+        this.load.audio("ouch", "collision.mp3");
+        this.load.audio("levmusic", "DoctorTimeLev.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -34,6 +36,18 @@ class Level1 extends Phaser.Scene {
     }
 
     create() {
+        if (musicoff) {
+            this.sound.stopAll();
+        }
+        else {
+            this.sound.stopAll();
+            this.levm = this.sound.add('levmusic');
+            this.levm.play();
+            this.levm.loop = true;
+        }
+        
+        this.ouch = this.sound.add('ouch');
+
         previousScene = this.scene.key;
 
         this.cameras.main.setBackgroundColor('#1D4625');
@@ -265,6 +279,8 @@ class Level1 extends Phaser.Scene {
         function redo() {
             // Trigger the scene change here
             // For example:
+            this.ouch.play();
+            this.ouch.loop = false;
             this.scene.start('level1');
         }
 

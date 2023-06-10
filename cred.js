@@ -3,7 +3,8 @@ class Cred extends Phaser.Scene {
         super('cred');
     }
     preload() {
-
+        this.load.path = "./assets/";
+        this.load.audio("theme", "DoctorTimeTheme.mp3");
     }
     create() {
         cursors = this.input.keyboard.createCursorKeys();

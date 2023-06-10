@@ -10,6 +10,10 @@ class Pause extends Phaser.Scene {
         this.load.image('mapbut', 'mapbut.png');
     }
     create() {
+        if (musicoff) {
+            this.sound.stopAll();
+        }
+        
         this.cameras.main.setBackgroundColor('#36454f');
         this.textObject0 = this.add.text(
             50, //x

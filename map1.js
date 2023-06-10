@@ -7,8 +7,20 @@ class Map1 extends Phaser.Scene {
         this.load.image('lev1', 'lev1.png')
         this.load.image('lev2', 'lev2.png')
         this.load.image('lev3', 'lev3.png')
+        this.load.image('pause', 'pause.png')
+        this.load.audio("theme", "DoctorTimeTheme.mp3");
     }
     create() {
+        if (musicoff) {
+            this.sound.stopAll();
+        }
+        else {
+            this.sound.stopAll();
+            this.theme = this.sound.add('theme');
+            this.theme.play();
+            this.theme.loop = true;
+        }
+        
         this.cameras.main.fadeIn(3000);
         // set up Phaser-provided cursor key input
         cursors = this.input.keyboard.createCursorKeys();
@@ -47,5 +59,19 @@ class Map1 extends Phaser.Scene {
         this.lev3 = this.add.image(centerX + 500, centerY, 'lev3')
         this.lev3.setScale(4)
         this.lev3.setTint(0xff0000);
+
+        this.pause = this.add.image(centerX + 900, centerY - 500, 'pause')
+        this.pause.setDepth(1)
+        this.pause.setScale(2)
+            .setInteractive()
+            .on('pointerover', () => this.pause.setAlpha(0.4))
+            .on('pointerout', () => this.pause.setAlpha(1))
+            .on('pointerdown', () => {
+                this.scene.start('pause')
+            });
+        this.pause.setOrigin(1, 0); 
+    }
+    update() {
+
     }
 }

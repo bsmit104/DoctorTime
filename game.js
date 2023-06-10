@@ -31,6 +31,7 @@ var isleft;
 var isright;
 var jumping;
 var previousScene;
+var musicoff;
 
 var config = {
     type: Phaser.AUTO,

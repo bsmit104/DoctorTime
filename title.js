@@ -5,8 +5,14 @@ class Title extends Phaser.Scene {
     preload() {
         this.load.path = "./assets/";
         this.load.image('title', 'title.png');
+        this.load.audio("theme", "DoctorTimeTheme.mp3");
     }
     create() {
+        this.sound.stopAll();
+        this.theme = this.sound.add('theme');
+        this.theme.play();
+        this.theme.loop = true;
+
         this.cameras.main.setBackgroundColor('#1D4625');
 
         const centerX = this.cameras.main.width / 2;
