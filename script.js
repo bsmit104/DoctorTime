@@ -55,7 +55,11 @@ class Map extends Phaser.Scene {
         this.load.image('lev3', 'lev3.png')
     }
     create() {
-
+        if(localStorage.getItem('moff')) {
+            musicoff = true
+        } else {
+            musicoff = false
+        }
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
         previousScene = this.scene.key;
@@ -104,6 +108,11 @@ class Settings extends Phaser.Scene {
         this.load.image('audiooff', 'audio_off.png');
     }
     create() {
+        if(localStorage.getItem('moff')) {
+            musicoff = true
+        } else {
+            musicoff = false
+        }
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
 
@@ -151,6 +160,11 @@ class Pause extends Phaser.Scene {
         this.load.image('mapbut', 'mapbut.png');
     }
     create() {
+        if(localStorage.getItem('moff')) {
+            musicoff = true
+        } else {
+            musicoff = false
+        }
         this.cameras.main.setBackgroundColor('#36454f');
         this.textObject0 = this.add.text(
             50, //x
@@ -347,6 +361,7 @@ class Beg extends Phaser.Scene {
 
     }
     create(){
+        
         const centerX = this.cameras.main.width / 2;
         const centerY = this.cameras.main.height / 2;
 

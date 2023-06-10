@@ -8,6 +8,7 @@ class Win extends Phaser.Scene {
         this.load.audio("theme", "DoctorTimeTheme.mp3");
     }
     create() {
+
         this.sound.stopAll();
         this.theme = this.sound.add('theme');
         this.theme.play();

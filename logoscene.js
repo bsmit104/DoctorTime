@@ -7,6 +7,7 @@ class Logoscene extends Phaser.Scene {
         this.load.image('logo', 'doctime_logo.png')
     }
     create() {
+
         cursors = this.input.keyboard.createCursorKeys();
         // set up Scene switcher
         const centerX = this.cameras.main.width / 2;

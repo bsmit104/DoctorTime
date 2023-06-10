@@ -11,6 +11,7 @@ class Map1 extends Phaser.Scene {
         this.load.audio("theme", "DoctorTimeTheme.mp3");
     }
     create() {
+
         if (musicoff) {
             this.sound.stopAll();
         }

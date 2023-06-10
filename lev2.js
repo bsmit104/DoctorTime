@@ -5,6 +5,11 @@ class Level2 extends Phaser.Scene {
     }
 
     preload() {
+        if(localStorage.getItem('moff')) {
+            musicoff = true
+        } else {
+            musicoff = false
+        }
         this.load.path = "./assets/";
         // map made with Tiled in JSON format
         this.load.tilemapTiledJSON('lab2', 'lab2.json');
@@ -31,6 +36,11 @@ class Level2 extends Phaser.Scene {
     }
 
     create() {
+        if(localStorage.getItem('moff')) {
+            musicoff = true
+        } else {
+            musicoff = false
+        }
         if (musicoff) {
             this.sound.stopAll();
         }
@@ -236,6 +246,21 @@ class Level2 extends Phaser.Scene {
     }
 
     update(time, delta) {
+        if(localStorage.getItem('moff')) {
+            console.log("lskdfjlksdjf")
+            musicoff = true
+        } else {
+            musicoff = false
+        }
+        if (musicoff) {
+            this.sound.stopAll();
+        }
+        else {
+            this.sound.stopAll();
+            this.levm = this.sound.add('levmusic');
+            this.levm.play();
+            this.levm.loop = true;
+        }
         const camera = this.cameras.main;
         const margin = 10; // Margin from the edge of the camera view
 

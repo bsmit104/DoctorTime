@@ -3,11 +3,19 @@ class Title extends Phaser.Scene {
         super('title');
     }
     preload() {
+
+        //AUDIO CACHE REQUIREMENT
+        if(localStorage.getItem('moff') == "true") {
+            musicoff = true
+        } else {
+            musicoff = false
+        }
         this.load.path = "./assets/";
         this.load.image('title', 'title.png');
         this.load.audio("theme", "DoctorTimeTheme.mp3");
     }
     create() {
+
         this.sound.stopAll();
         this.theme = this.sound.add('theme');
         this.theme.play();

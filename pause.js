@@ -10,6 +10,7 @@ class Pause extends Phaser.Scene {
         this.load.image('mapbut', 'mapbut.png');
     }
     create() {
+
         if (musicoff) {
             this.sound.stopAll();
         }

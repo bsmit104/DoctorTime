@@ -38,6 +38,7 @@ class Settings extends Phaser.Scene {
             .on('pointerdown', () => {
                 /////////////////music on/////////////////
                 musicoff = false;
+                localStorage.setItem('moff', 'false'); //AUDIO CACHE REQUIREMENT
                 this.sound.stopAll();
                 this.theme = this.sound.add('theme');
                 this.theme.play();
@@ -52,6 +53,7 @@ class Settings extends Phaser.Scene {
             .on('pointerdown', () => {
                 ////////////////music off///////////////
                 musicoff = true;
+                localStorage.setItem('moff', 'true'); //AUDIO CACHE REQUIREMENT
                 this.sound.stopAll();
             });
 

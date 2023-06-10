@@ -259,7 +259,11 @@ class Level1 extends Phaser.Scene {
     }
 
     update(time, delta) {
-
+        if(localStorage.getItem('moff') == "true") { //AUDIO CACHE REQUIREMENT
+            musicoff = true
+        } else {
+            musicoff = false
+        }
 
         const camera = this.cameras.main;
         const margin = 10; // Margin from the edge of the camera view
