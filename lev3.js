@@ -254,7 +254,7 @@ class Level3 extends Phaser.Scene {
         function nextsce() {
             // Trigger the scene change here
             // For example:
-            this.scene.start('title');
+            this.scene.start('win');
         }
         this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
         // Collision callback function

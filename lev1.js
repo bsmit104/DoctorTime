@@ -45,9 +45,8 @@ class Level1 extends Phaser.Scene {
             this.levm.play();
             this.levm.loop = true;
         }
-        
         this.ouch = this.sound.add('ouch');
-
+        
         previousScene = this.scene.key;
 
         this.cameras.main.setBackgroundColor('#1D4625');
