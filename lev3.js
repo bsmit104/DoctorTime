@@ -15,6 +15,7 @@ class Level3 extends Phaser.Scene {
         this.load.image('pause', 'pause.png');
         this.load.image('leftk', 'lkey.png');
         this.load.image('rightk', 'rkey.png');
+        this.load.image('jumpk', 'jkey.png');
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -196,6 +197,20 @@ class Level3 extends Phaser.Scene {
         this.rkey.setScale(6);
         this.rkey.setOrigin(1, 0);
 
+        this.jkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'jumpk')
+        this.jkey.setDepth(1)
+            .setInteractive()
+            .on('pointerover', () => this.jkey.setAlpha(0.4))
+            .on('pointerout', () => this.jkey.setAlpha(1))
+            .on('pointerdown', () => {
+                jumping = true;
+            })
+            .on('pointerup', () => {
+                jumping = false;
+            });
+        this.jkey.setScale(6);
+        this.jkey.setOrigin(1, 0);
+
         // set bounds so the camera won't go outside the game world
         this.cameras.main.setBounds(0, 0, map.widthInPixels * 4, map.heightInPixels * 4);
         // make the camera follow the player
@@ -218,6 +233,7 @@ class Level3 extends Phaser.Scene {
 
         this.lkey.setPosition(newX + -1600, newY + 800);
         this.rkey.setPosition(newX + -1400, newY + 800);
+        this.jkey.setPosition(newX, newY + 800);
 
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
         // Collision callback function
@@ -282,6 +298,11 @@ class Level3 extends Phaser.Scene {
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-500);
         }
+        if (jumping && player.body.onFloor()) {
+            player.body.setVelocityY(-500);
+            player.anims.play('docjump', true);
+        }
+
         if (player.body.blocked.left || player.body.blocked.right) {
             // Check if the player is pressing the jump key
             if (cursors.up.isDown) {

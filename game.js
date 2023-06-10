@@ -29,6 +29,7 @@ var sgroundLayer;
 let cursors;
 var isleft;
 var isright;
+var jumping;
 var previousScene;
 
 var config = {

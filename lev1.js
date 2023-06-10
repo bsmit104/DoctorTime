@@ -15,6 +15,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('pause', 'pause.png');
         this.load.image('leftk', 'lkey.png');
         this.load.image('rightk', 'rkey.png');
+        this.load.image('jumpk', 'jkey.png');
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -203,6 +204,20 @@ class Level1 extends Phaser.Scene {
         this.rkey.setScale(6);
         this.rkey.setOrigin(1, 0);
 
+        this.jkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'jumpk')
+        this.jkey.setDepth(1)
+            .setInteractive()
+            .on('pointerover', () => this.jkey.setAlpha(0.4))
+            .on('pointerout', () => this.jkey.setAlpha(1))
+            .on('pointerdown', () => {
+                jumping = true;
+            })
+            .on('pointerup', () => {
+                jumping = false;
+            });
+        this.jkey.setScale(6);
+        this.jkey.setOrigin(1, 0);
+
         // set background color, so the sky is not black    
         this.cameras.main.setBackgroundColor('#ccccff');
     }
@@ -220,6 +235,7 @@ class Level1 extends Phaser.Scene {
         
         this.lkey.setPosition(newX + -1600, newY + 800);
         this.rkey.setPosition(newX + -1400, newY + 800);
+        this.jkey.setPosition(newX, newY + 800);
 
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
         // Collision callback function
@@ -288,6 +304,10 @@ class Level1 extends Phaser.Scene {
             // player.on('animationcomplete-docjump', () => {
             //     player.anims.play('docrun', true);
             // });
+        }
+        if (jumping && player.body.onFloor()) {
+            player.body.setVelocityY(-500);
+            player.anims.play('docjump', true);
         }
 
         // Wall jump logic
