@@ -19,6 +19,7 @@ class Level1 extends Phaser.Scene {
         this.load.image('dust1', 'dust1.png');
         this.load.image('dust2', 'dust2.png');
         this.load.audio("ouch", "collision.mp3");
+        this.load.audio("roboto", "robot1.mp3");
         this.load.image('star', 'Star.png');
         this.load.audio("levmusic", "DoctorTimeLev.mp3");
         this.load.spritesheet('docrun', 'docrun.png', {
@@ -47,7 +48,8 @@ class Level1 extends Phaser.Scene {
             this.levm.loop = true;
         }
         this.ouch = this.sound.add('ouch');
-        
+        this.roboto = this.sound.add('roboto');
+
         previousScene = this.scene.key;
 
         this.cameras.main.setBackgroundColor('#1D4625');
@@ -254,6 +256,8 @@ class Level1 extends Phaser.Scene {
     }
 
     update(time, delta) {
+
+
         const camera = this.cameras.main;
         const margin = 10; // Margin from the edge of the camera view
 
@@ -296,6 +300,19 @@ class Level1 extends Phaser.Scene {
         //     this.dustEmitter1.stop();
         //     this.dustEmitter2.start();
         // }
+        
+        let random_sfx = Math.floor(Math.random() * 5000);
+        let random_duration = Math.floor(Math.random()*70);
+
+        if(random_sfx >= 4998){
+            console.log(random_sfx)
+            console.log(random_duration)
+            this.roboto.duration = random_duration;
+            this.roboto.loop = false;
+            if(this.roboto.isPlaying == false){
+                this.roboto.play()
+            }
+        }
 
         if (isleft) {
             player.body.setVelocityX(-500);
