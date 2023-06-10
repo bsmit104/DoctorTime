@@ -321,6 +321,15 @@ class Level1 extends Phaser.Scene {
 
                 // Prevent continuous wall jumping by disabling further jumps temporarily
                 player.body.blocked.up = true;
+            }
+            else if (jumping) {
+                    // Apply an upward velocity to initiate the wall jump
+                    player.setVelocityY(-300);
+    
+                    // You can add additional logic or animations here
+    
+                    // Prevent continuous wall jumping by disabling further jumps temporarily
+                    player.body.blocked.up = true;
             } else {
                 // Reset the ability to wall jump if the player is not pressing the jump key
                 player.body.blocked.up = false;

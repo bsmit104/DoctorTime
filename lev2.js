@@ -232,19 +232,19 @@ class Level2 extends Phaser.Scene {
         this.jkey.setPosition(newX, newY + 800);
 
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
-            // Collision callback function
-            function nextsce() {
-                // Trigger the scene change here
-                // For example:
-                this.scene.start('map');
-            }
+        // Collision callback function
+        function nextsce() {
+            // Trigger the scene change here
+            // For example:
+            this.scene.start('map');
+        }
         this.physics.add.collider(player, this.rectangleGroup, redo, null, this);
-            // Collision callback function
-            function redo() {
-                // Trigger the scene change here
-                // For example:
-                this.scene.start('level2');
-            }
+        // Collision callback function
+        function redo() {
+            // Trigger the scene change here
+            // For example:
+            this.scene.start('level2');
+        }
 
         // if (Phaser.Geom.Rectangle.ContainsPoint(this.winrect, { x: player.width, y: player.height })) {
         //     //this.scene.start('cut3');
@@ -302,6 +302,15 @@ class Level2 extends Phaser.Scene {
         if (player.body.blocked.left || player.body.blocked.right) {
             // Check if the player is pressing the jump key
             if (cursors.up.isDown) {
+                // Apply an upward velocity to initiate the wall jump
+                player.setVelocityY(-300);
+
+                // You can add additional logic or animations here
+
+                // Prevent continuous wall jumping by disabling further jumps temporarily
+                player.body.blocked.up = true;
+            }
+            else if (jumping) {
                 // Apply an upward velocity to initiate the wall jump
                 player.setVelocityY(-300);
 
