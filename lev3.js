@@ -92,7 +92,7 @@ class Level3 extends Phaser.Scene {
         this.flagob.setScale(4);
         this.flagob.setImmovable(true);
 
-        this.physics.world.gravity.y = 2000;
+        this.physics.world.gravity.y = 1300;
         // load the map 
         map = this.make.tilemap({ key: 'lab3' });
 
@@ -313,7 +313,7 @@ class Level3 extends Phaser.Scene {
         }
         // jump 
         if (cursors.up.isDown && player.body.onFloor()) {
-            player.body.setVelocityY(-900);
+            player.body.setVelocityY(-600);
             player.anims.play('docjump', true);
             this.add.particles(player.x, player.y, 'star', {
                 speed: 100,
