@@ -27,6 +27,8 @@ var wallLayer;
 var miscLayer;
 var sgroundLayer;
 let cursors;
+var isleft;
+var isright;
 var previousScene;
 
 var config = {

@@ -13,6 +13,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('player', 'dashstill.png');
         this.load.image('flag', 'portal.png');
         this.load.image('pause', 'pause.png');
+        this.load.image('leftk', 'lkey.png');
+        this.load.image('rightk', 'rkey.png');
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -173,6 +175,34 @@ class Level1 extends Phaser.Scene {
         // make the camera follow the player
         this.cameras.main.startFollow(player);
 
+        this.lkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'leftk')
+        this.lkey.setDepth(1)
+            .setInteractive()
+            .on('pointerover', () => this.lkey.setAlpha(0.4))
+            .on('pointerout', () => this.lkey.setAlpha(1))
+            .on('pointerdown', () => {
+                isleft = true;
+            })
+            .on('pointerup', () => {
+                isleft = false;
+            });
+        this.lkey.setScale(6);
+        this.lkey.setOrigin(1, 0); // Set the origin to the top right corner
+
+        this.rkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'rightk')
+        this.rkey.setDepth(1)
+            .setInteractive()
+            .on('pointerover', () => this.rkey.setAlpha(0.4))
+            .on('pointerout', () => this.rkey.setAlpha(1))
+            .on('pointerdown', () => {
+                isright = true;
+            })
+            .on('pointerup', () => {
+                isright = false;
+            });
+        this.rkey.setScale(6);
+        this.rkey.setOrigin(1, 0);
+
         // set background color, so the sky is not black    
         this.cameras.main.setBackgroundColor('#ccccff');
     }
@@ -187,6 +217,10 @@ class Level1 extends Phaser.Scene {
 
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
+        
+        this.lkey.setPosition(newX + -1600, newY + 800);
+        this.rkey.setPosition(newX + -1400, newY + 800);
+
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
         // Collision callback function
         function nextsce() {
@@ -205,8 +239,21 @@ class Level1 extends Phaser.Scene {
         // if (Phaser.Geom.Rectangle.ContainsPoint(this.winrect, { x: player.width, y: player.height })) {
         //     //this.scene.start('cut3');
         // }
-
-        if (cursors.left.isDown) {
+        if (isleft) {
+            player.body.setVelocityX(-500);
+            player.setSize(25, player.height - 8);
+            player.setOffset(16, 4);
+            player.anims.play('docrun', true); // walk left
+            player.flipX = true; // flip the sprite to the left
+        }
+        else if (isright) {
+            player.body.setVelocityX(500);
+            player.setSize(25, player.height - 8);
+            player.setOffset(0, 4); // Reset the offset to 0
+            player.anims.play('docrun', true);
+            player.flipX = false; // flip the sprite to the left
+        }
+        else if (cursors.left.isDown) {
             player.body.setVelocityX(-500);
             player.setSize(25, player.height - 8);
             player.setOffset(16, 4);
