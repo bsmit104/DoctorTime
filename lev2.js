@@ -335,6 +335,12 @@ class Level2 extends Phaser.Scene {
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
             player.anims.play('docjump', true);
+            this.add.particles(player.x, player.y, 'star', {
+                speed: 100,
+                lifespan: 3000,
+                duration: 300,
+                gravityY: 200
+            });
         }
 
         if (player.body.blocked.left || player.body.blocked.right) {
