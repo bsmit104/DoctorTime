@@ -6,3 +6,8 @@ Music done by Connor Green
 Procedural sound featured in collision death sounds as well as varying level music  
 Procedural Graphics include ________  
 Advanced Assets can be seen in animations such as running
+  
+  
+## take note ##  
+- full screen on ios is not supported  
+- if u are using a touch device and u find that the player runs off in one direction, that is because rather than picking your finger up of the button, u slid it off. Simply just retap the button and he will stop. 
