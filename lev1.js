@@ -16,6 +16,8 @@ class Level1 extends Phaser.Scene {
         this.load.image('leftk', 'lkey.png');
         this.load.image('rightk', 'rkey.png');
         this.load.image('jumpk', 'jkey.png');
+        this.load.image('dust1', 'dust1.png');
+        this.load.image('dust2', 'dust2.png');
         this.load.spritesheet('docrun', 'docrun.png', {
             frameWidth: 32,
             frameHeight: 32,
@@ -155,6 +157,20 @@ class Level1 extends Phaser.Scene {
         // player will collide with the level tiles 
         this.physics.add.collider(groundLayer, player);
 
+        // // Create the particle emitter behind the player
+        // var particles = this.add.particles('dust1');
+        // this.dustEmitter = particles.createEmitter({
+        //     x: player.x,
+        //     y: player.y,
+        //     speed: { min: -100, max: 100 },
+        //     scale: { start: 1, end: 0 },
+        //     lifespan: 2000,
+        //     blendMode: 'ADD',
+        // });
+
+        // // Follow the player's position with the emitter
+        // this.dustEmitter.startFollow(player);
+
         // // player walk animation
         // this.anims.create({
         //     key: 'walk',
@@ -232,7 +248,7 @@ class Level1 extends Phaser.Scene {
 
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
-        
+
         this.lkey.setPosition(newX + -1600, newY + 800);
         this.rkey.setPosition(newX + -1400, newY + 800);
         this.jkey.setPosition(newX, newY + 800);
@@ -255,6 +271,15 @@ class Level1 extends Phaser.Scene {
         // if (Phaser.Geom.Rectangle.ContainsPoint(this.winrect, { x: player.width, y: player.height })) {
         //     //this.scene.start('cut3');
         // }
+
+        // if (playerIsMoving) {
+        //     this.dustEmitter1.start();
+        //     this.dustEmitter2.stop();
+        // } else {
+        //     this.dustEmitter1.stop();
+        //     this.dustEmitter2.start();
+        // }
+
         if (isleft) {
             player.body.setVelocityX(-500);
             player.setSize(25, player.height - 8);
@@ -323,13 +348,13 @@ class Level1 extends Phaser.Scene {
                 player.body.blocked.up = true;
             }
             else if (jumping) {
-                    // Apply an upward velocity to initiate the wall jump
-                    player.setVelocityY(-300);
-    
-                    // You can add additional logic or animations here
-    
-                    // Prevent continuous wall jumping by disabling further jumps temporarily
-                    player.body.blocked.up = true;
+                // Apply an upward velocity to initiate the wall jump
+                player.setVelocityY(-300);
+
+                // You can add additional logic or animations here
+
+                // Prevent continuous wall jumping by disabling further jumps temporarily
+                player.body.blocked.up = true;
             } else {
                 // Reset the ability to wall jump if the player is not pressing the jump key
                 player.body.blocked.up = false;

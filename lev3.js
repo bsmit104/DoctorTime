@@ -28,8 +28,6 @@ class Level3 extends Phaser.Scene {
 
     create() {
         previousScene = this.scene.key;
-        
-        this.scene.input.addPointer(3);
 
         const camera = this.cameras.main;
 
