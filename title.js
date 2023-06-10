@@ -29,7 +29,7 @@ class Title extends Phaser.Scene {
         this.title = this.add.image(centerX, centerY - 100, 'title');
         this.title.setScale(3);
 
-        const playText = this.add.text(centerX + 250, centerY + 300, 'PLAY', { fontSize: '80px', fill: '#fff' });
+        const playText = this.add.text(centerX + 450, centerY + 300, 'PLAY', { fontSize: '80px', fill: '#fff' });
         //playText.setDepth(1);
         playText.setInteractive();
         playText.on('pointerover', () => {
@@ -39,6 +39,7 @@ class Title extends Phaser.Scene {
             playText.setStyle({ fill: '#fff' });
         });
         playText.on('pointerdown', () => {
+            touchscreen = false;
             this.scene.start('map1');
         });
         this.tweens.add({
@@ -50,7 +51,29 @@ class Title extends Phaser.Scene {
             duration: 100
         });
 
-        const credText = this.add.text(centerX - 400, centerY + 300, 'CREDITS', { fontSize: '80px', fill: '#fff' });
+        const playTouch = this.add.text(centerX -360, centerY + 300, 'PLAY ON MOBILE', { fontSize: '80px', fill: '#fff' });
+        //playText.setDepth(1);
+        playTouch.setInteractive();
+        playTouch.on('pointerover', () => {
+            playTouch.setStyle({ fill: '#ff0' });
+        });
+        playTouch.on('pointerout', () => {
+            playTouch.setStyle({ fill: '#fff' });
+        });
+        playTouch.on('pointerdown', () => {
+            touchscreen = true;
+            this.scene.start('map1');
+        });
+        this.tweens.add({
+            targets: this.title,
+            x: '+=' + 100,
+            repeat: 2,
+            yoyo: true,
+            ease: 'Sine.inOut',
+            duration: 100
+        });
+
+        const credText = this.add.text(centerX - 800, centerY + 300, 'CREDITS', { fontSize: '80px', fill: '#fff' });
         //playText.setDepth(1);
         credText.setInteractive();
         credText.on('pointerover', () => {

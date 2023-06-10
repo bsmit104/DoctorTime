@@ -32,6 +32,7 @@ var isright;
 var jumping;
 var previousScene;
 var musicoff;
+var touchscreen;
 
 var config = {
     type: Phaser.AUTO,
@@ -51,7 +52,7 @@ var config = {
                 x: 0,
                 y: 0
             },
-            debug: true
+            debug: false
         }
     },
     input: {
