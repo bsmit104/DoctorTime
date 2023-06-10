@@ -53,6 +53,9 @@ var config = {
             debug: true
         }
     },
+    input: {
+        activePointers: 5
+    },
     scene: [Logoscene, Title, Cred, Map1, Map2, Map, Pause, Settings, Level1, Level2, Level3]
     //{
     // key: 'main',
