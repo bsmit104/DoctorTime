@@ -286,14 +286,6 @@ class Level2 extends Phaser.Scene {
             player.anims.play('docrun', true); // walk left
             player.flipX = true; // flip the sprite to the left
         }
-        else if (cursors.down.isDown) {
-            //player.body.setVelocityY(-500); 
-            player.body.allowGravity = false;
-        }
-        else if (cursors.space.isDown) {
-            //player.body.setVelocityY(-500); 
-            player.body.allowGravity = true;
-        }
         else if (cursors.right.isDown) {
             player.body.setVelocityX(500);
             player.setSize(25, player.height - 8);
