@@ -249,6 +249,24 @@ class Level1 extends Phaser.Scene {
 
         // set background color, so the sky is not black    
         this.cameras.main.setBackgroundColor('#ccccff');
+
+        let ghost = this.add.sprite(player.x, player.y, player.texture.key).setAlpha(0.5);
+        ghost.setScale(player.displayWidth/ghost.displayWidth)
+        this.time.addEvent({
+            delay: 1,
+            callback: () => {
+                let x = player.x;
+                let y = player.y;
+                let texture = player.texture.key;
+                this.time.delayedCall(500, () => {
+                    ghost.x = x;
+                    ghost.y = y;
+                    ghost.setTexture(texture);
+                })
+            },
+            loop: true
+        })
+
     }
 
     update(time, delta) {
