@@ -1,9 +1,16 @@
-Credits:  
-Brayden Smith: Art, Lead Programmer
-Akash Basu: Testing Lead, Programmer
-Connor Green: Production Lead, Music & Sound fx
-Aly Cerutti: Tech Lead, Programmer
-Aaron Lee: Programmer
+# DOCTOR TIME
+
+## Credits:  
+- Brayden Smith: Art, Lead Programmer
+
+- Akash Basu: Testing Lead, Programmer
+
+- Connor Green: Production Lead, Music & Sound fx
+
+- Aly Cerutti: Tech Lead, Programmer
+
+- Aaron Lee: Programmer
+
 This project was created for our final project in CMPM120. We were given the theme Close in space but far in time. Our project meets this theme requirement as the lore states that Doctor Time is traversing different futures and realities, while you, the player, are controlling Doctor Time in a close space, although he himself is far in time. 
 Prototypes:
 https://github.com/bsmit104/core_gameplay_proto
