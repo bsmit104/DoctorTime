@@ -12,43 +12,54 @@
 - Aaron Lee: Programmer
 
 This project was created for our final project in CMPM120. We were given the theme Close in space but far in time. Our project meets this theme requirement as the lore states that Doctor Time is traversing different futures and realities, while you, the player, are controlling Doctor Time in a close space, although he himself is far in time. 
-Prototypes:
-https://github.com/bsmit104/core_gameplay_proto
-https://github.com/bsmit104/sceneflowproto
-By Akash Basu
-https://github.com/RedInJapanese/120fincinematic 
-By Aaron Lee
-https://anranlee99.github.io/CMPM120-core-gameplay-1/core-gameplay-1.html 
+### Prototypes:
+
+- https://github.com/bsmit104/core_gameplay_proto 
+
+- https://github.com/bsmit104/sceneflowproto
+
+- https://github.com/RedInJapanese/120fincinematic By Akash Basu
+
+- https://anranlee99.github.io/CMPM120-core-gameplay-1/core-gameplay-1.html By Aaron Lee
+
 We also made a switch from one repository to another due to the prototype being more complete, version control issues, and code confusions.
 Previous repo:
 https://github.com/bsmit104/cmpm120-final 
 
 
-Audio:
-continuously looping
-sound fx on die
-Visual:
-sprite sheets
-particle system
-Motion:
-player can move left, right, jump, and wall bounce
-Progression:
-3 level progression
-Prefabs:
-collision object group, also ground is an object
-maps generated with separate file json files
+### Audio:
+- continuously looping
+
+- sound fx on die
+
+### Visual:
+- sprite sheets
+
+- particle system
+
+### Motion:
+- player can move left, right, jump, and wall bounce
+
+### Progression:
+- 3 level progression
+
+### Prefabs:
+- collision object group, also ground is an object
+
+- maps generated with separate file json files
 Procedural sound featured in collision death sounds as well as varying level music
-Procedural Graphics include ________
+Procedural Graphics include: particles whenever Dr. Time enters the jumping animation in-game.
 Advanced Assets can be seen in animations such as running
-take note
-full screen on ios is not supported
-if u are using a touch device and u find that the player runs off in one direction, that is because rather than picking your finger up of the button, u slid it off. Simply just retap the button and he will stop.
-pause will reset player to start of level
-could add a option to turn of visibility of LRJ keys
-If falling fast enough, you may glitch but unlikely, its a rare bug.
+
+## Take Note
+- full screen on ios is not supported
+- if you are using a touch device and u find that the player runs off in one direction, that is because rather than picking your finger up of the button, u slid it off. Simply just retap the button and he will stop.
+- pause will reset player to start of level
+- could add a option to turn of visibility of LRJ keys
+- If falling fast enough, you may glitch but unlikely, its a rare bug.
 
 
-Core Requirements
+## Core Requirements
 [project archive] The team has submitted a self-contained archive of their design and deployment work (e.g. a repository on GitHub). This archive contains some documentation (e.g. a README.md file) that is immediately visible even to non-technical audiences. 
 [main game] The documentation links to a deployed version of the main game compatible with mobile browsers. (This might be on GitHub pages, Itch.io, or other web hosting site.) - yes github pages
 [prototypes] The documentation links to the deployed version of three playable prototypes (core gameplay, scene flow, and cinematics). (They don't need to be deployed on the same platform as the main game, but the audience needs to be able to play them by simply clicking a direct link to them.) - yes, see above
