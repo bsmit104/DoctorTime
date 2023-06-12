@@ -32,6 +32,7 @@ var isright;
 var jumping;
 var previousScene;
 var musicoff;
+var touchscreen;
 
 var config = {
     type: Phaser.AUTO,

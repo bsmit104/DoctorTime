@@ -211,6 +211,7 @@ class Level1 extends Phaser.Scene {
         this.cameras.main.startFollow(player);
 
         //mobile buttons
+        if (touchscreen) {
         this.lkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'leftk')
         this.lkey.setDepth(1)
             .setInteractive()
@@ -222,7 +223,7 @@ class Level1 extends Phaser.Scene {
             .on('pointerup', () => {
                 isleft = false;
             });
-        this.lkey.setScale(6);
+        this.lkey.setScale(10);
         this.lkey.setOrigin(1, 0); // Set the origin to the top right corner
 
         this.rkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'rightk')
@@ -236,7 +237,7 @@ class Level1 extends Phaser.Scene {
             .on('pointerup', () => {
                 isright = false;
             });
-        this.rkey.setScale(6);
+        this.rkey.setScale(10);
         this.rkey.setOrigin(1, 0);
 
         this.jkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'jumpk')
@@ -250,8 +251,50 @@ class Level1 extends Phaser.Scene {
             .on('pointerup', () => {
                 jumping = false;
             });
-        this.jkey.setScale(6);
+        this.jkey.setScale(10);
         this.jkey.setOrigin(1, 0);
+        }
+        // this.lkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'leftk')
+        // this.lkey.setDepth(1)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.lkey.setAlpha(0.4))
+        //     .on('pointerout', () => this.lkey.setAlpha(1))
+        //     .on('pointerdown', () => {
+        //         isleft = true;
+        //     })
+        //     .on('pointerup', () => {
+        //         isleft = false;
+        //     });
+        // this.lkey.setScale(6);
+        // this.lkey.setOrigin(1, 0); // Set the origin to the top right corner
+
+        // this.rkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'rightk')
+        // this.rkey.setDepth(1)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.rkey.setAlpha(0.4))
+        //     .on('pointerout', () => this.rkey.setAlpha(1))
+        //     .on('pointerdown', () => {
+        //         isright = true;
+        //     })
+        //     .on('pointerup', () => {
+        //         isright = false;
+        //     });
+        // this.rkey.setScale(6);
+        // this.rkey.setOrigin(1, 0);
+
+        // this.jkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'jumpk')
+        // this.jkey.setDepth(1)
+        //     .setInteractive()
+        //     .on('pointerover', () => this.jkey.setAlpha(0.4))
+        //     .on('pointerout', () => this.jkey.setAlpha(1))
+        //     .on('pointerdown', () => {
+        //         jumping = true;
+        //     })
+        //     .on('pointerup', () => {
+        //         jumping = false;
+        //     });
+        // this.jkey.setScale(6);
+        // this.jkey.setOrigin(1, 0);
 
         // set background color, so the sky is not black    
         this.cameras.main.setBackgroundColor('#ccccff');
@@ -271,9 +314,14 @@ class Level1 extends Phaser.Scene {
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
 
-        this.lkey.setPosition(newX + -1600, newY + 800);
-        this.rkey.setPosition(newX + -1400, newY + 800);
-        this.jkey.setPosition(newX, newY + 800);
+        if (touchscreen) {
+        this.lkey.setPosition(newX + -1500, newY + 750);
+        this.rkey.setPosition(newX + -1180, newY + 750);
+        this.jkey.setPosition(newX, newY + 750);
+        }
+        // this.lkey.setPosition(newX + -1600, newY + 800);
+        // this.rkey.setPosition(newX + -1400, newY + 800);
+        // this.jkey.setPosition(newX, newY + 800);
 
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
         // Collision callback function
