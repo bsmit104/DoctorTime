@@ -85,10 +85,18 @@ Advanced Assets can be seen in animations such as running
   - The game's main progression can be followed to some satisfying ending point within 10 minutes by a player experienced with related videogames. - players can play through 3 levels. The levels also have a lot of replayability. 
 
 ### Selectable Requirements (choose 3)
-- Data-driven experience progression (e.g. defined in a separate JSON/XML or other data file). You should be able to give us the name of one or more text files containing game design details in a format that isn't a programming language.
-- Procedural audio (sound created with code, rather data files). You might use ToneJS to build a sound without any sound asset files or assemble several synchronized music layers to build a combinatorial space of sounds from a very small collections of sound asset files.
-- Procedural graphics (graphics created with code, rather than data files). You might use Phaser's Graphics
+- Data-driven experience progression (e.g. defined in a separate JSON/XML or other data file). You should be able to give us the name of one or more text files containing game design details in a format that isn't a programming language.  
 
+(this is done in tile maps loaded with tile set and json files: lab1.json, lab2.json, lab3.json)  
+
+- Procedural audio (sound created with code, rather data files). You might use ToneJS to build a sound without any sound asset files or assemble several synchronized music layers to build a combinatorial space of sounds from a very small collections of sound asset files.  
+  
+(robot sound fx plays at random times with varying sounds in length and pitch)  
+
+- Procedural graphics (graphics created with code, rather than data files). You might use Phaser's Graphics  
+
+(particle system sparkles on jump)  
+  
 
 Lore:
 Doctor Time has to save the world by traversing different realities to save the world from robots that destroy it. 

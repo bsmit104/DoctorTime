@@ -397,7 +397,7 @@ class Level2 extends Phaser.Scene {
         // jump 
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-600);
-            player.anims.play('docjump', true);
+            // player.anims.play('docjump', true);
             this.jump = this.sound.add('jump');
             this.jump.play();
             this.jump.loop = false;
@@ -411,7 +411,7 @@ class Level2 extends Phaser.Scene {
         }
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
-            player.anims.play('docjump', true);
+            // player.anims.play('docjump', true);
             this.jump = this.sound.add('jump');
             this.jump.play();
             this.jump.loop = false;

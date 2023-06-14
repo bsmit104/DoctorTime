@@ -193,6 +193,7 @@ class Level3 extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
 
         //add mobile buttons
+        if (touchscreen) {
         this.lkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'leftk')
         this.lkey.setDepth(1)
             .setInteractive()
@@ -204,7 +205,7 @@ class Level3 extends Phaser.Scene {
             .on('pointerup', () => {
                 isleft = false;
             });
-        this.lkey.setScale(6);
+        this.lkey.setScale(10);
         this.lkey.setOrigin(1, 0); // Set the origin to the top right corner
 
         this.rkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'rightk')
@@ -218,7 +219,7 @@ class Level3 extends Phaser.Scene {
             .on('pointerup', () => {
                 isright = false;
             });
-        this.rkey.setScale(6);
+        this.rkey.setScale(10);
         this.rkey.setOrigin(1, 0);
 
         this.jkey = this.add.image(camera.width * 4 - 500, camera.height * 4 - 600, 'jumpk')
@@ -232,8 +233,9 @@ class Level3 extends Phaser.Scene {
             .on('pointerup', () => {
                 jumping = false;
             });
-        this.jkey.setScale(6);
+        this.jkey.setScale(10);
         this.jkey.setOrigin(1, 0);
+        }
 
         // set bounds so the camera won't go outside the game world
         this.cameras.main.setBounds(0, 0, map.widthInPixels * 4, map.heightInPixels * 4);
@@ -255,9 +257,11 @@ class Level3 extends Phaser.Scene {
         // Set the new position of the pause image
         this.pause.setPosition(newX + 50, newY);
 
-        this.lkey.setPosition(newX + -1600, newY + 800);
-        this.rkey.setPosition(newX + -1400, newY + 800);
-        this.jkey.setPosition(newX, newY + 800);
+        if (touchscreen) {
+            this.lkey.setPosition(newX + -1500, newY + 750);
+            this.rkey.setPosition(newX + -1180, newY + 750);
+            this.jkey.setPosition(newX, newY + 750);
+        }
 
         this.physics.add.collider(player, this.flagob, nextsce, null, this);
         // Collision callback function
@@ -337,7 +341,7 @@ class Level3 extends Phaser.Scene {
         // jump 
         if (cursors.up.isDown && player.body.onFloor()) {
             player.body.setVelocityY(-600);
-            player.anims.play('docjump', true);
+            // player.anims.play('docjump', true);
             this.jump = this.sound.add('jump');
             this.jump.play();
             this.jump.loop = false;
@@ -351,7 +355,7 @@ class Level3 extends Phaser.Scene {
         }
         if (jumping && player.body.onFloor()) {
             player.body.setVelocityY(-500);
-            player.anims.play('docjump', true);
+            // player.anims.play('docjump', true);
             this.jump = this.sound.add('jump');
             this.jump.play();
             this.jump.loop = false;
