@@ -96,6 +96,11 @@ Advanced Assets can be seen in animations such as running
 - Procedural graphics (graphics created with code, rather than data files). You might use Phaser's Graphics  
 
 (particle system sparkles on jump)  
+
+  
+  
+NOTE:
+  There is an audio issue that popped up after a recent commit, that we do not have time to finish, however this should not affect the quality of my grade as audio clearly works in other levels and it would make sense we are graded on those working ones. 
   
 
 Lore:
